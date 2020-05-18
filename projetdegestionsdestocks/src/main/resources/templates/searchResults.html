@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header::headerlink"></head>
+<body>
+<div>
+    <div th:replace="fragments/header::header"></div>
+
+    <div class="content content-page">
+        <!-- Start Header -->
+        <div class="header">
+            <div class="header-left">
+                <a href="#" class="burger-menu"><i data-feather="menu"></i></a>
+                <div class="header-search">
+                    <i data-feather="search"></i>
+                    <input type="search" class="form-control" placeholder="What are you looking for?">
+                </div>
+            </div>
+        </div>
+        <!-- End Header -->
+
+        <!-- Start Content -->
+        <div class="content-header justify-content-between">
+        </div>
+        <div class="content-body">
+
+            <div class="component-section" style="margin-top: 0px" th:if="${!customers.isEmpty()}">
+                <h3>Résultat de la recherche</h3>
+                <table id="example1" class="table">
+                    <thead>
+                    <tr>
+                        <th class="wd-15p">Nom du client</th>
+                        <th class="wd-15p">Contact du client</th>
+                        <th class="wd-20p">Email du client</th>
+                        <th class="wd-15p">Localisation du client</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="result : ${customers}">
+                        <td th:text="${result.name}" ></td>
+                        <td th:text="${result.phone}"></td>
+                        <td th:text="${result.email}"></td>
+                        <td th:text="${result.location}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div th:unless="${!customers.isEmpty()}" class="alert alert-warning"> Data Not found </div>
+
+        </div>
+        <!-- End Content -->
+    </div>
+</div>
+<div th:replace="fragments/header::footerscript"></div>
+</body>
+</html>
